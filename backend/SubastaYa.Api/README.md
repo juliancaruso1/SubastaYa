@@ -74,6 +74,32 @@ chmod +x concurrency-test.sh
 
 Salida esperada: una respuesta `200 OK` y una `409 Conflict`.
 
+#### Evidencia real de ejecución
+
+Corrido el `2026-09-05` contra la subasta semilla Id 1 (Notebook Gamer RTX,
+puja actual $45.000, incremento mínimo $1.000, `VersionEsperada=2`):
+
+```
+Disparando 2 pujas idénticas en paralelo contra http://localhost:5000/api/v1/auctions/1/bids ...
+Request 1 -> HTTP 200
+Request 2 -> HTTP 409
+
+--- Respuesta 1 ---
+{"extendida":false,"nuevaFechaFin":"2026-09-05T23:17:03.7674061Z",
+ "subasta":{"id":1,"titulo":"Notebook Gamer RTX","pujaActual":46000,
+ "proximaPujaSugerida":47000.0,"estado":"Activa","version":3, ... }}
+
+--- Respuesta 2 ---
+{"Mensaje":"La subasta cambió de estado desde que la consultaste. Refrescá e intentá de nuevo."}
+
+Se espera un 200 OK y un 409 Conflict.
+```
+
+De las dos pujas idénticas enviadas en simultáneo, la base de datos aceptó
+una sola (`Version` pasó de `2` a `3`, `pujaActual` quedó en `$46.000`) y
+rechazó la otra con `409 Conflict`, confirmando que la concurrencia
+optimista funciona como se diseñó.
+
 ## Reglas de negocio implementadas
 
 - **Escrow atómico**: al pujar, se libera la retención del líder anterior y se
