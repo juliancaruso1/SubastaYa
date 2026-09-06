@@ -1,0 +1,429 @@
+:root {
+  --bg: #12151c;
+  --surface: #1b2030;
+  --surface-hover: #232a3d;
+  --border: #2c3348;
+  --text: #edeff4;
+  --text-muted: #8a93a6;
+  --accent: #f2b705;
+  --accent-dim: #a37e0c;
+  --danger: #e5484d;
+  --success: #34d399;
+
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+
+.app-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.brand-tag {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.user-switcher {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.user-switcher select {
+  background: transparent;
+  color: var(--text);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 26px; margin: 0 0 6px; }
+h2 { font-size: 18px; margin: 0 0 16px; }
+
+.page-header { margin-bottom: 28px; }
+.page-subtitle { color: var(--text-muted); font-size: 14px; }
+
+.filters-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.filters-bar select, .filters-bar input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+}
+
+.auction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.auction-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.auction-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.auction-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: #0d0f15;
+}
+
+.auction-card-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.auction-card-category {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.auction-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.auction-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.price-tag {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.price-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  display: block;
+}
+
+.countdown {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.countdown.critical {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.badge.estado-Activa { border-color: var(--success); color: var(--success); }
+.badge.estado-Programada { border-color: var(--accent-dim); color: var(--accent); }
+.badge.estado-Finalizada { border-color: var(--border); color: var(--text-muted); }
+.badge.estado-Desierta { border-color: var(--danger); color: var(--danger); }
+
+/* --- Sala de subasta en vivo --- */
+.live-room {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+}
+
+@media (max-width: 800px) {
+  .live-room { grid-template-columns: 1fr; }
+}
+
+.live-hero img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  max-height: 340px;
+  object-fit: cover;
+}
+
+.live-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: start;
+}
+
+.timer-display {
+  font-family: var(--font-mono);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.timer-display.critical { color: var(--danger); }
+.timer-display.warning { color: var(--accent); }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.status-pill.leading { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+.status-pill.outbid { background: rgba(229, 72, 77, 0.15); color: var(--danger); }
+
+.bid-console {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bid-console input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-ui);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-primary { background: var(--accent); color: #1a1400; }
+.btn-primary:hover { background: #ffcb2b; }
+.btn-primary:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+
+.btn-secondary { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
+
+.bid-history {
+  max-height: 260px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bid-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.bid-row .monto { font-family: var(--font-mono); font-weight: 600; }
+.bid-row .hora { color: var(--text-muted); font-size: 11px; }
+
+/* --- Billetera --- */
+.wallet-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 700px) {
+  .wallet-stats { grid-template-columns: 1fr; }
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.stat-card .stat-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+.stat-card .stat-value { font-family: var(--font-mono); font-size: 24px; font-weight: 700; }
+.stat-card.disponible .stat-value { color: var(--success); }
+.stat-card.retenido .stat-value { color: var(--accent); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); }
+th { color: var(--text-muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; }
+td.monto { font-family: var(--font-mono); }
+
+.deposit-form { display: flex; gap: 10px; margin-bottom: 24px; }
+.deposit-form input { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 7px; font-family: var(--font-mono); }
+
+/* --- Formulario crear subasta --- */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 13px; color: var(--text-muted); }
+.field input, .field textarea, .field select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 11px;
+  border-radius: 7px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+.field-row { display: flex; gap: 12px; }
+.field-row .field { flex: 1; }
+.field-error { color: var(--danger); font-size: 12px; }
+
+/* --- Toasts --- */
+.toast-stack {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+}
+
+.toast {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  min-width: 240px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+.toast.success { border-left-color: var(--success); }
+.toast.error { border-left-color: var(--danger); }
+
+.empty-state {
+  color: var(--text-muted);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.tabs { display: flex; gap: 4px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+.tabs button {
+  background: none;
+  border-radius: 0;
+  padding: 10px 4px;
+  margin-right: 20px;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+}
+.tabs button.active { color: var(--text); border-bottom-color: var(--accent); }
